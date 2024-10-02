@@ -23,5 +23,14 @@ router.get('/tracks', async (req, res) => {
     }
 })
 
+router.get('/tracks/:id', async (req, res) => {
+    try {
+        const foundTrack = await Track.findOne(req.body.params)
+        res.status(200).json({ foundTrack })
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
+
 
 module.exports = router
