@@ -43,4 +43,12 @@ router.put('/tracks/:id', async (req, res) => {
     }
 })
 
+router.delete('/tracks/:id', async (req, res) => {
+    try {
+        const deletedTrack = await Track.findByIdAndDelete(req.params.id)
+        res.status(200).json({ deletedTrack })
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
 module.exports = router
